@@ -76,6 +76,8 @@ Module TENConverter
         For Each arg As String In fileArgs
 
             Dim file_old As String = arg.Trim()
+
+            'check if file exists
             If Not IO.File.Exists(file_old) Then
                 Console.WriteLine($"Error: File not found: {file_old}")
                 Continue For
@@ -83,16 +85,7 @@ Module TENConverter
 
             Console.WriteLine($"Processing file: {file_old}...")
 
-            Dim tchart As New Steema.TeeChart.TChart()
-            'import TEN file
-            Try
-                tchart.Import.Template.Load(file_old)
-            Catch ex As Exception
-                Console.WriteLine($"Error importing file {file_old}: {ex.Message}")
-                Continue For
-            End Try
-
-            'export as JSON
+            'determine output file path
             Dim file_new As String
             If outputDir = String.Empty Then
                 file_new = IO.Path.Combine(
@@ -105,26 +98,52 @@ Module TENConverter
                     IO.Path.GetFileNameWithoutExtension(file_old) & ".json.ten"
                 )
             End If
+
+            'check if output file already exists
             If IO.File.Exists(file_new) Then
-                Console.WriteLine($"File already exists, skipping: {file_new}")
+                Console.WriteLine($"Output file already exists, skipping: {file_new}")
                 Continue For
             End If
-            Try
-                tchart.Export.TemplateJSON.Save(file_new)
-                Console.WriteLine($"File successfully converted: {file_new}")
-            Catch ex As Exception
-                Console.WriteLine($"Error exporting file {file_new}: {ex.Message}")
-                'delete incomplete file if it was created
-                If IO.File.Exists(file_new) Then
-                    Try
-                        IO.File.Delete(file_new)
-                    Catch deleteEx As Exception
-                        Console.WriteLine($"Error deleting incomplete file {file_new}: {deleteEx.Message}")
-                    End Try
-                End If
-            End Try
+
+            'convert the file
+            Call Convert(file_old, file_new)
 
         Next
+
+    End Sub
+
+    ''' <summary>
+    ''' Converts a single TEN file from the old binary format to the new JSON format
+    ''' </summary>
+    ''' <param name="file_old">path to the old binary file</param>
+    ''' <param name="file_new">path to the new json file</param>
+    Public Sub Convert(file_old As String, file_new As String)
+
+        Dim tchart As New Steema.TeeChart.TChart()
+
+        'import TEN file
+        Try
+            tchart.Import.Template.Load(file_old)
+        Catch ex As Exception
+            Console.WriteLine($"Error importing file {file_old}: {ex.Message}")
+            Return
+        End Try
+
+        'export as JSON
+        Try
+            tchart.Export.TemplateJSON.Save(file_new)
+            Console.WriteLine($"File successfully converted: {file_new}")
+        Catch ex As Exception
+            Console.WriteLine($"Error exporting file {file_new}: {ex.Message}")
+            'delete incomplete file if it was created
+            If IO.File.Exists(file_new) Then
+                Try
+                    IO.File.Delete(file_new)
+                Catch deleteEx As Exception
+                    Console.WriteLine($"Error deleting incomplete file {file_new}: {deleteEx.Message}")
+                End Try
+            End If
+        End Try
 
     End Sub
 
