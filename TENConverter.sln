@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TENConverter", "TENConverter.vbproj", "{83D06BF6-6AAC-4C23-A26F-73F859A714A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83D06BF6-6AAC-4C23-A26F-73F859A714A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D06BF6-6AAC-4C23-A26F-73F859A714A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D06BF6-6AAC-4C23-A26F-73F859A714A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D06BF6-6AAC-4C23-A26F-73F859A714A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CC96888-C068-40BC-AD19-82D31243DFC9}
+	EndGlobalSection
+EndGlobal
