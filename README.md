@@ -5,10 +5,11 @@ A command-line utility for converting old binary TeeChart TEN files to the new J
 ## Usage
 ```cmd
 TENConverter.exe [-o outputdirectory] paths
-    -o: optional output directory. If not provided, converted files are saved to the same directory as the original
-    paths: one or more space-separated paths to TEN files to convert. If path is a directory, all TEN files found in this directory including subdirectories will be converted.
-Converted files will have the same filename as the original but with file extension .json.ten
 ```
+* `-o`: optional output directory. If not provided, converted files are saved to the same directory as the original.
+* `paths`: one or more space-separated paths to TEN files to convert. If path is a directory, all TEN files found in this directory including subdirectories will be converted.
+
+Converted files will have the same filename as the original but with file extension `.json.ten`.
 
 ## Examples
 
