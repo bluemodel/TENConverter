@@ -56,12 +56,12 @@ Module TENConverter
                 'Handle output directory option
                 iArg += 1
                 If args.Count < iArg + 1 Then
-                    Console.WriteLine("Error: Output directory not specified after -o option")
+                    Console.WriteLine("ERROR: Output directory not specified after -o option")
                     Return
                 End If
                 outputDir = args(iArg).Trim()
                 If Not IO.Directory.Exists(outputDir) Then
-                    Console.WriteLine($"Error: Output directory does not exist: {outputDir}")
+                    Console.WriteLine($"ERROR: Output directory does not exist: {outputDir}")
                     Return
                 End If
                 n_option_args += 2
@@ -73,7 +73,7 @@ Module TENConverter
         Dim pathArgs As List(Of String) = args.Skip(n_option_args).ToList()
 
         If pathArgs.Count = 0 Then
-            Console.WriteLine("Error: No paths specified for conversion")
+            Console.WriteLine("ERROR: No paths specified for conversion")
             Return
         End If
 
@@ -87,7 +87,7 @@ Module TENConverter
 
             ElseIf IO.Directory.Exists(path) Then
                 'process a directory - search for TEN files and convert them
-                Console.WriteLine($"Searching for TEN files in directory: {path}...")
+                Console.WriteLine($"INFO: Searching for TEN files in directory: {path}...")
                 Dim matcher As New Matcher()
                 matcher.AddInclude("**/*.ten")
 
@@ -98,16 +98,16 @@ Module TENConverter
                 )
 
                 If result.HasMatches Then
-                    Console.WriteLine($"Found {result.Files.Count} TEN files to convert")
+                    Console.WriteLine($"INFO: Found {result.Files.Count} TEN files to convert")
                     For Each file In result.Files
                         Dim fullPath As String = IO.Path.Combine(path, file.Path)
                         Call ProcessFile(fullPath)
                     Next
                 Else
-                    Console.WriteLine($"No TEN files found in directory: {path}")
+                    Console.WriteLine($"WARNING: No TEN files found in directory: {path}")
                 End If
             Else
-                Console.WriteLine($"Error: File/directory not found: {path}")
+                Console.WriteLine($"ERROR: File/directory not found: {path}")
                 Continue For
             End If
 
@@ -122,7 +122,7 @@ Module TENConverter
     ''' <param name="file">path to file to process</param>
     Public Sub ProcessFile(file As String)
 
-        Console.WriteLine($"Processing file: {file}...")
+        Console.WriteLine($"INFO: Processing file: {file}...")
 
         'determine output file path
         Dim file_new As String
@@ -140,7 +140,7 @@ Module TENConverter
 
         'check if output file already exists
         If IO.File.Exists(file_new) Then
-            Console.WriteLine($"Output file already exists, skipping: {file_new}")
+            Console.WriteLine($"WARNING: Output file already exists, skipping: {file_new}")
             Return
         End If
 
@@ -162,22 +162,22 @@ Module TENConverter
         Try
             tchart.Import.Template.Load(file_old)
         Catch ex As Exception
-            Console.WriteLine($"Error importing file {file_old}: {ex.Message}")
+            Console.WriteLine($"ERROR: Error while importing file {file_old}: {ex.Message}")
             Return
         End Try
 
         'export as JSON
         Try
             tchart.Export.TemplateJSON.Save(file_new)
-            Console.WriteLine($"File successfully converted: {file_new}")
+            Console.WriteLine($"INFO: File successfully converted: {file_new}")
         Catch ex As Exception
-            Console.WriteLine($"Error exporting file {file_new}: {ex.Message}")
+            Console.WriteLine($"ERROR: Error while exporting file {file_new}: {ex.Message}")
             'delete incomplete file if it was created
             If IO.File.Exists(file_new) Then
                 Try
                     IO.File.Delete(file_new)
                 Catch deleteEx As Exception
-                    Console.WriteLine($"Error deleting incomplete file {file_new}: {deleteEx.Message}")
+                    Console.WriteLine($"ERROR: Error while deleting incomplete file {file_new}: {deleteEx.Message}")
                 End Try
             End If
         End Try
