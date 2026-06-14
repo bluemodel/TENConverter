@@ -1,4 +1,4 @@
-'BlueM.Wave
+'BlueM.TENConverter
 'Copyright (C) BlueM Dev Group
 '<https://www.bluemodel.org>
 '
