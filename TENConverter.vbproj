@@ -96,6 +96,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="CHANGELOG.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="COPYING">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
