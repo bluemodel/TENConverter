@@ -17,7 +17,7 @@
 '
 ''' <summary>
 ''' TENConverter
-''' A command-line utility for converting old binary TEN files to the new JSON format used by TeeChart. 
+''' A command-line utility for converting old binary TeeChart TEN files to the new JSON format
 ''' </summary>
 Module TENConverter
 
@@ -26,8 +26,8 @@ Module TENConverter
         Dim v As Version = Reflection.Assembly.GetExecutingAssembly.GetName().Version()
         Dim currentVersion As New Version($"{v.Major}.{v.Minor}.{v.Build}")
 
-        Console.WriteLine($"BlueM.Wave.TENConverter v{currentVersion}")
-        Console.WriteLine("Converts old binary TEN files to new JSON format")
+        Console.WriteLine($"BlueM.TENConverter v{currentVersion}")
+        Console.WriteLine("Converts old binary TeeChart TEN files to the new JSON format")
         Console.WriteLine()
 
         Dim args As List(Of String) = System.Environment.GetCommandLineArgs().Skip(1).ToList() ' Skip the executable name
