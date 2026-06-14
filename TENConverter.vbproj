@@ -120,6 +120,9 @@
     <EmbeddedResource Include="My Project\TeeChart.licenses" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing">
+      <Version>10.0.9</Version>
+    </PackageReference>
     <PackageReference Include="Steema.TeeChart.NET">
       <Version>4.2026.6.7</Version>
     </PackageReference>
