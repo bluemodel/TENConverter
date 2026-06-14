@@ -1,6 +1,18 @@
-[*.{cs,vb}]
-tab_width = 4
+# Remove the line below if you want to inherit .editorconfig settings from higher directories
+root = true
+
+# Visual Basic files
+[*.vb]
+#### Core EditorConfig Options ####
+
+# Indentation and spacing
 indent_size = 4
+indent_style = space
+tab_width = 4
+
+# New line preferences
 end_of_line = crlf
+
 charset = utf-8
+insert_final_newline = false
 trim_trailing_whitespace = true
