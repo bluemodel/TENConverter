@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -8,8 +8,8 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("BlueM.Wave.TENConverter")>
-<Assembly: AssemblyDescription("A command-line utility for converting old binary TEN files to the new JSON format used by TeeChart")>
+<Assembly: AssemblyTitle("BlueM.TENConverter")>
+<Assembly: AssemblyDescription("A command-line utility for converting old binary TeeChart TEN files to the new JSON format")>
 <Assembly: AssemblyCompany("BlueM Dev Group")>
 <Assembly: AssemblyProduct("TENConverter")>
 <Assembly: AssemblyCopyright("Copyright © BlueM Dev Group 2026")>
