@@ -41,6 +41,6 @@ jobs:
         with:
           name: "v${{ steps.version.outputs.full }}"
           draft: true
-          body: "[Full changelog](https://github.com/bluemodel/BlueM.TENConverter/blob/${{ steps.version.outputs.full }}/CHANGELOG.md)"
+          body: "[Full changelog](https://github.com/bluemodel/TENConverter/blob/${{ steps.version.outputs.full }}/CHANGELOG.md)"
           files: |
             BlueM.TENConverter_${{ steps.version.outputs.full }}.zip
