@@ -27,6 +27,9 @@ jobs:
       - name: Copy TeeChart license file
         run: copy ${{ steps.teechart-license.outputs.file }} "My Project\TeeChart.licenses"
         
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v3
+
       - name: Build project
         run: msbuild TENConverter.vbproj -restore /property:Configuration=Release
         
